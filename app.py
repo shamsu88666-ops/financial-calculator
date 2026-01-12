@@ -1,13 +1,14 @@
 import streamlit as st
 import pandas as pd
 from pyxirr import xirr
-from datetime import datetime, date
+from datetime import datetime
 import random
 
 # --- APP CONFIGURATION ---
 st.set_page_config(page_title="Financial Calculators Suite - Pro Edition", layout="wide")
 
 # --- CUSTOM CSS FOR UI MATCHING ---
+# 100% Python ആപ്പിന്റെ അതേ UI കളറുകളും സ്റ്റൈലും നിലനിർത്താൻ
 st.markdown("""
     <style>
     .main { background-color: #0E1116; color: #E5E7EB; }
@@ -124,7 +125,7 @@ sip_quotes = [
     "время കൂടുമ്പോൾ SIP ശക്തമാകും.",
     "സാമ്പത്തിക പ്ലാൻ ഇല്ലെങ്കിൽ പണം വഴിതെറ്റും.",
     "നിക്ഷേപം സുരക്ഷയും വളർച്ചയും ഒരുമിച്ച്.",
-    "സ്ഥിരതയുള്ള നിക്ഷേപം യഥാർത്ഥ സമ്പത്ത്.",
+    "സ്ഥിരതയുള്ള നിക്ഷേപമാണ് യഥാർത്ഥ സമ്പത്ത്.",
     "ഇപ്പോൾ തുടങ്ങുക!"
 ]
 
@@ -149,20 +150,18 @@ tab_sip, tab_lumpsum, tab_cagr, tab_ins, tab_xirr, tab_rev_cagr = st.tabs([
     " SIP ", " LUMPSUM ", " CAGR ", " INSURANCE ", " XIRR PRO ", " REV CAGR "
 ])
 
-# --- CALENDAR RANGE SETTINGS ---
-min_date = date(1950, 1, 1)
-max_date = date(2099, 12, 31)
-
 # --- SIP TAB ---
 with tab_sip:
     col1, space, col2 = st.columns([0.48, 0.04, 0.48])
+    
     with col1:
         st.markdown('<div class="input-card">', unsafe_allow_html=True)
         st.subheader("Target Goal (Target SIP)")
         t_amt = st.number_input("Target Goal (₹)", key="sip_t_amt", format="%0.2f")
-        t_date = st.date_input("Start Date", key="sip_t_date", min_value=min_date, max_value=max_date)
+        t_date = st.date_input("Start Date", key="sip_t_date")
         t_rate = st.number_input("Expected Return (%)", key="sip_t_rate")
         t_years = st.number_input("Time Period (Years)", key="sip_t_years", step=1)
+        
         if st.button("Calculate Goal SIP"):
             try:
                 annual_rate = t_rate / 100
@@ -178,9 +177,10 @@ with tab_sip:
         st.markdown('<div class="input-card">', unsafe_allow_html=True)
         st.subheader("Wealth Generator (SIP)")
         w_amt = st.number_input("Monthly Investment (₹)", key="sip_w_amt")
-        w_date = st.date_input("Start Date", key="sip_w_date", min_value=min_date, max_value=max_date)
+        w_date = st.date_input("Start Date", key="sip_w_date")
         w_rate = st.number_input("Expected Return (%)", key="sip_w_rate")
         w_years = st.number_input("Time Period (Years)", key="sip_w_years", step=1)
+        
         if st.button("Calculate Wealth"):
             try:
                 annual_rate = w_rate / 100
@@ -217,11 +217,12 @@ with tab_cagr:
 # --- INSURANCE TAB ---
 with tab_ins:
     if 'ins_data' not in st.session_state: st.session_state.ins_data = []
+    
     st.markdown('<div class="input-card">', unsafe_allow_html=True)
     i_amt = st.number_input("Amount (₹)", key="ins_amt")
-    # Calendar set to 1950 - 2099
-    i_date = st.date_input("Select Date", key="ins_date", min_value=min_date, max_value=max_date)
+    i_date = st.date_input("Select Date", key="ins_date")
     i_type = st.radio("Type", ["Premium", "Survival/MoneyBack", "Maturity Amount"], horizontal=True)
+    
     if st.button("Add to List"):
         actual = -abs(i_amt) if i_type == "Premium" else abs(i_amt)
         st.session_state.ins_data.append({"Date": i_date, "Type": i_type, "Amount": actual})
@@ -230,6 +231,7 @@ with tab_ins:
     if st.session_state.ins_data:
         df = pd.DataFrame(st.session_state.ins_data)
         st.table(df)
+        
         col_c1, col_c2 = st.columns(2)
         with col_c1:
             if st.button("Calculate Result"):
@@ -252,13 +254,14 @@ with tab_ins:
 with tab_xirr:
     st.error("⚠️ IMPORTANT: INVESTMENT as NEGATIVE (-10000), RETURNS as POSITIVE (25000)")
     if 'xirr_pro' not in st.session_state: 
-        st.session_state.xirr_pro = [{"Date": date.today(), "Amount": 0.0} for _ in range(10)]
+        st.session_state.xirr_pro = [{"Date": datetime.today(), "Amount": 0.0} for _ in range(10)]
+
     for i in range(len(st.session_state.xirr_pro)):
         cols = st.columns([1, 2, 2])
         cols[0].write(f"{i+1}.")
-        # Calendar set to 1950 - 2099 here as well
-        st.session_state.xirr_pro[i]["Date"] = cols[1].date_input(f"Date {i}", value=st.session_state.xirr_pro[i]["Date"], key=f"date_inp_{i}", label_visibility="collapsed", min_value=min_date, max_value=max_date)
-        st.session_state.xirr_pro[i]["Amount"] = cols[2].number_input(f"Amt {i}", value=st.session_state.xirr_pro[i]["Amount"], key=f"amt_inp_{i}", label_visibility="collapsed")
+        st.session_state.xirr_pro[i]["Date"] = cols[1].date_input(f"Date {i}", value=st.session_state.xirr_pro[i]["Date"], label_visibility="collapsed")
+        st.session_state.xirr_pro[i]["Amount"] = cols[2].number_input(f"Amt {i}", value=st.session_state.xirr_pro[i]["Amount"], label_visibility="collapsed")
+
     if st.button("Calculate XIRR PRO"):
         valid_data = [x for x in st.session_state.xirr_pro if x["Amount"] != 0]
         if len(valid_data) >= 2:
@@ -275,7 +278,10 @@ with tab_rev_cagr:
     r_initial = st.number_input("Initial Amount (₹)", key="r_i")
     r_cagr = st.number_input("Expected CAGR (%)", key="r_c")
     r_years = st.number_input("Years", key="r_y", step=1)
+    
     if st.button("Calculate Future Value"):
         res = r_initial * ((1 + r_cagr/100) ** r_years)
         st.markdown(f'<h1 class="result-text" style="text-align:center;">₹ {round(res):,}</h1>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
+
+# അടുത്ത ഘട്ടമായി ഈ കോഡ് റൺ ചെയ്യാൻ ആവശ്യമായ ലൈബ്രറികൾ ഇൻസ്റ്റാൾ ചെയ്യണോ?
