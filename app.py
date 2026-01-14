@@ -32,7 +32,7 @@ sip_quotes = [
     "ചെറിയ തുകയ്ക്കും ദീർഘകാലം വലിയ മൂല്യമുണ്ട്.",
     "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർധിക്കും.",
     "സ്ഥിരമായ നിക്ഷേപം അനിശ്ചിത ഭാവിയെ നിയന്ത്രിക്കും.",
-    "വруമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
+    "വരുമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
     "നിക്ഷേപം ഭാവിയോട് ഉള്ള ഉത്തരവാദിത്വമാണ്.",
     "സാമ്പത്തിക വിജയത്തിന്റെ അടിസ്ഥാനം ഡിസിപ്ലിൻ ആണ്.",
     "മാർക്കറ്റ് ചാഞ്ചാട്ടം നിക്ഷേപത്തിന്റെ സ്വഭാവമാണ്.",
@@ -101,7 +101,7 @@ sip_quotes = [
     "നിക്ഷേപം ഭാഗ്യത്തിൽ ആശ്രയിക്കില്ല.",
     "SIP ചെറുതായിട്ടാണ് ശക്തി തുടങ്ങുന്നത്.",
     "നിക്ഷേപം ഭാവിയുടെ സുരക്ഷയാണ്.",
-    "സ്ഥിരമായ നിക്ഷേപം മനസ്സിന് ആശ്വാസം.",
+    "സ്ഥിരമായ നിക്ഷേപം മനസ്സിനും ആശ്വാസം.",
     "പണം വളരാൻ സമയം വേണം.",
     "നിക്ഷേപം ജീവിതത്തിലെ അനിശ്ചിതത്വം കുറയ്ക്കും.",
     "SIP ദീർഘകാല ചിന്തയുടെ ഫലമാണ്.",
@@ -125,7 +125,33 @@ sip_quotes = [
     "സാമ്പത്തിക പ്ലാൻ ഇല്ലെങ്കിൽ പണം വഴിതെറ്റും.",
     "നിക്ഷേപം സുരക്ഷയും വളർച്ചയും ഒരുമിച്ച്.",
     "സ്ഥിരതയുള്ള നിക്ഷേപം യഥാർത്ഥ സമ്പത്ത്.",
-    "ഇപ്പോൾ തുടങ്ങുക!"
+    "ഇപ്പോൾ തുടങ്ങുക!",
+    "ചെറിയ തുക, വലിയ സ്വപ്നം – അതാണ് SIP",
+    "ഇന്ന് മാറ്റിവച്ചത് നാളെയുടെ സ്വാതന്ത്ര്യം",
+    "സമ്പത്ത് പണിയുന്നത് ശമ്പളദിനത്തിൽ നിന്നാണ്",
+    "SIP തുടങ്ങുന്ന ദിവസം നിങ്ങളുടെ ഭാവി ആരംഭിക്കുന്നു",
+    "ശീലം മാറ്റിയാൽ ജീവിതം മാറും – SIP പോലെ",
+    "ചെലവിനു മുൻപേ നിക്ഷേപം",
+    "പതുക്കെ, പക്ഷേ ഉറപ്പോടെ സമ്പത്തിലേക്ക്",
+    "ഓരോ മാസവും ഭാവിയിലേക്ക് ഒരു ചുവട്",
+    "SIP ആണ് സാധാരണ മനുഷ്യന്റെ സൂപ്പർപവർ",
+    "വരുമാനം ഉണ്ടാക്കുന്നത് ജോലിയാണ്, സമ്പത്ത് SIP ആണ്",
+    "സമ്പത്ത് പണിയാൻ SIP, ജീവിക്കാൻ SWP",
+    "ജോലി ഇല്ലാതെയും വരുമാനം – SWP യുടെ ശക്തി",
+    "പെൻഷൻ ഇല്ലെങ്കിൽ SWP വേണം",
+    "SWP = സമാധാനമുള്ള വിരമിക്കൽ",
+    "സമ്പത്ത് സൂക്ഷിച്ച് വരുമാനം എടുക്കുന്ന ബുദ്ധി അതാണ് SWP",
+    "SIP ഉള്ളവർക്ക് മാർക്കറ്റിനെ പേടി ഇല്ല",
+    "പണം പ്രവർത്തിക്കണം നമുക്കുവേണ്ടി",
+    "SIP തുടങ്ങുന്നവൻ SWP വരെ എത്തും",
+    "ഇന്നത്തെ SIP നാളെയുടെ SWP",
+    "SIP ആണ് വിത്ത്, SWP ആണ് വിളവ്",
+    "പണം ഉണ്ടാക്കാനും, ഉപയോഗിക്കാനും പ്ലാൻ വേണം",
+    "SIP → കാമ്പൗണ്ടിംഗ് → SWP → സ്വാതന്ത്ര്യം",
+    "SWP ഒരിക്കലും ശൂന്യമാകാത്ത കാഷ്‌ഫ്ലോ",
+    "പണം നിയന്ത്രിച്ചാൽ ജീവിതം നിയന്ത്രിക്കാം",
+    "SIP ഇല്ലെങ്കിൽ SWP ഒരു സ്വപ്നം മാത്രം",
+    "ഇന്ന് തുടങ്ങൂ, നാളേയ്ക്ക് വേണ്ടി."
 ]
 
 ins_quotes = [
@@ -146,8 +172,8 @@ st.markdown("<h1 style='text-align: center; color: #E5E7EB;'>FINANCIAL CALCULATO
 st.markdown("<p style='text-align: center; color: #9CA3AF;'>Developed by SHAMSUDEEN ABDULLA</p>", unsafe_allow_html=True)
 
 # --- TABS SETUP ---
-tab_sip, tab_lumpsum, tab_cagr, tab_ins, tab_xirr, tab_rev_cagr = st.tabs([
-    " SIP ", " LUMPSUM ", " CAGR ", " INSURANCE ", " XIRR PRO ", " REV CAGR "
+tab_sip, tab_swp, tab_lumpsum, tab_cagr, tab_ins, tab_xirr, tab_rev_cagr = st.tabs([
+    " SIP ", " SWP ", " LUMPSUM ", " CAGR ", " INSURANCE ", " XIRR PRO ", " REV CAGR "
 ])
 
 # --- CALENDAR RANGE SETTINGS ---
@@ -170,7 +196,6 @@ with tab_sip:
                 n = t_years * 12
                 res = t_amt * (monthly_rate / (((1 + monthly_rate)**n - 1) * (1 + monthly_rate)))
                 st.markdown(f'<h2 class="result-text">₹ {round(res):,}</h2>', unsafe_allow_html=True)
-                # Updated line below to show dynamic years
                 st.markdown(f'<p style="color: #E5E7EB;">If you invest this amount in SIP for {t_years} years, you can achieve your goal.</p>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
@@ -196,6 +221,38 @@ with tab_sip:
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
+
+# --- SWP TAB ---
+with tab_swp:
+    st.markdown('<div class="input-card">', unsafe_allow_html=True)
+    st.subheader("Systematic Withdrawal Plan (SWP)")
+    swp_initial = st.number_input("Total Investment (₹)", key="swp_initial", format="%0.2f")
+    swp_withdrawal = st.number_input("Withdrawal Per Month (₹)", key="swp_withdraw")
+    swp_rate = st.number_input("Expected Return (%)", key="swp_rate")
+    swp_years = st.number_input("Time Period (Years)", key="swp_years", step=1)
+    
+    if st.button("Calculate SWP"):
+        try:
+            months = swp_years * 12
+            monthly_rate = (swp_rate / 100) / 12
+            
+            balance = swp_initial
+            total_withdrawn = 0
+            
+            for _ in range(int(months)):
+                interest = balance * monthly_rate
+                balance = (balance + interest) - swp_withdrawal
+                total_withdrawn += swp_withdrawal
+                if balance < 0:
+                    balance = 0
+                    break
+            
+            st.markdown(f'<p style="color: #E5E7EB;">Total Investment: ₹ {round(swp_initial):,}</p>', unsafe_allow_html=True)
+            st.markdown(f'<p style="color: #E5E7EB;">Total Withdrawal: ₹ {round(total_withdrawn):,}</p>', unsafe_allow_html=True)
+            st.markdown(f'<h2 class="result-text">Final Value: ₹ {round(balance):,}</h2>', unsafe_allow_html=True)
+            st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
+        except: st.error("Calculation Error")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # --- LUMPSUM TAB ---
 with tab_lumpsum:
