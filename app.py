@@ -81,7 +81,7 @@ sip_quotes = [
     "നിക്ഷേപം ദീർഘകാല കാഴ്ചപ്പാട് നൽകും.",
     "സ്ഥിരമായ SIP വലിയ കണക്കുകൾ സൃഷ്ടിക്കും.",
     "നിക്ഷേപം ജീവിതത്തെ ലളിതമാക്കും.",
-    "время നഷ്ടപ്പെട്ടാൽ തിരികെ കിട്ടില്ല.",
+    "время നഷ്ടപ്പെട്ടാൽ തിриകെ കിട്ടില്ല.",
     "നിക്ഷേപം ഭാവിയുടെ അടിത്തറയാണ്.",
     "SIP സാമ്പത്തിക ശാന്തതയുടെ മാർഗമാണ്.",
     "പണം നിയന്ത്രിച്ചാൽ ജീവിതം നിയന്ത്രിക്കാം.",
@@ -170,6 +170,7 @@ with tab_sip:
                 n = t_years * 12
                 res = t_amt * (monthly_rate / (((1 + monthly_rate)**n - 1) * (1 + monthly_rate)))
                 st.markdown(f'<h2 class="result-text">₹ {round(res):,}</h2>', unsafe_allow_html=True)
+                st.markdown('<p style="color: #E5E7EB;">If you invest this amount in SIP, you can achieve your goal.</p>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
@@ -187,7 +188,11 @@ with tab_sip:
                 monthly_rate = (1 + annual_rate)**(1/12) - 1
                 n = w_years * 12
                 total = w_amt * (((1 + monthly_rate)**n - 1) / monthly_rate) * (1 + monthly_rate)
-                st.markdown(f'<h2 class="result-text">Wealth: ₹ {round(total):,}</h2>', unsafe_allow_html=True)
+                invested = w_amt * n
+                returns = total - invested
+                st.markdown(f'<p style="color: #E5E7EB;">Invested Amount: ₹ {round(invested):,}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="color: #E5E7EB;">Estimated Returns: ₹ {round(returns):,}</p>', unsafe_allow_html=True)
+                st.markdown(f'<h2 class="result-text">Total Wealth: ₹ {round(total):,}</h2>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
