@@ -32,7 +32,7 @@ sip_quotes = [
     "ചെറിയ തുകയ്ക്കും ദീർഘകാലം വലിയ മൂല്യമുണ്ട്.",
     "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർധിക്കും.",
     "സ്ഥിരമായ നിക്ഷേപം അനിശ്ചിത ഭാവിയെ നിയന്ത്രിക്കും.",
-    "വരുമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
+    "വруമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
     "നിക്ഷേപം ഭാവിയോട് ഉള്ള ഉത്തരവാദിത്വമാണ്.",
     "സാമ്പത്തിക വിജയത്തിന്റെ അടിസ്ഥാനം ഡിസിപ്ലിൻ ആണ്.",
     "മാർക്കറ്റ് ചാഞ്ചാട്ടം നിക്ഷേപത്തിന്റെ സ്വഭാവമാണ്.",
@@ -81,7 +81,7 @@ sip_quotes = [
     "നിക്ഷേപം ദീർഘകാല കാഴ്ചപ്പാട് നൽകും.",
     "സ്ഥിരമായ SIP വലിയ കണക്കുകൾ സൃഷ്ടിക്കും.",
     "നിക്ഷേപം ജീവിതത്തെ ലളിതമാക്കും.",
-    "время നഷ്ടപ്പെട്ടാൽ തിриകെ കിട്ടില്ല.",
+    "время നഷ്ടപ്പെട്ടാൽ തിരികെ കിട്ടില്ല.",
     "നിക്ഷേപം ഭാവിയുടെ അടിത്തറയാണ്.",
     "SIP സാമ്പത്തിക ശാന്തതയുടെ മാർഗമാണ്.",
     "പണം നിയന്ത്രിച്ചാൽ ജീവിതം നിയന്ത്രിക്കാം.",
@@ -170,7 +170,8 @@ with tab_sip:
                 n = t_years * 12
                 res = t_amt * (monthly_rate / (((1 + monthly_rate)**n - 1) * (1 + monthly_rate)))
                 st.markdown(f'<h2 class="result-text">₹ {round(res):,}</h2>', unsafe_allow_html=True)
-                st.markdown('<p style="color: #E5E7EB;">If you invest this amount in SIP for 20 years, you can achieve your goal.</p>', unsafe_allow_html=True)
+                # Updated line below to show dynamic years
+                st.markdown(f'<p style="color: #E5E7EB;">If you invest this amount in SIP for {t_years} years, you can achieve your goal.</p>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
