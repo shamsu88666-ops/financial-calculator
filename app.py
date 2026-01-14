@@ -30,7 +30,7 @@ sip_quotes = [
     "समय മാർക്കറ്റിൽ ഉണ്ടാകുന്നതാണ് ഏറ്റവും വലിയ ശക്തി.",
     "SIP ക്ഷമയെ സമ്പത്താക്കുന്ന സംവിധാനം ആണ്.",
     "ചെറിയ തുകയ്ക്കും ദീർഘകാലം വലിയ മൂല്യമുണ്ട്.",
-    "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർधിക്കും.",
+    "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർധിക്കും.",
     "സ്ഥിരമായ നിക്ഷേപം അനിശ്ചിത ഭാവിയെ നിയന്ത്രിക്കും.",
     "വരുമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
     "നിക്ഷേപം ഭാവിയോട് ഉള്ള ഉത്തരവാദിത്വമാണ്.",
@@ -81,7 +81,7 @@ sip_quotes = [
     "നിക്ഷേപം ദീർഘകാല കാഴ്ചപ്പാട് നൽകും.",
     "സ്ഥിരമായ SIP വലിയ കണക്കുകൾ സൃഷ്ടിക്കും.",
     "നിക്ഷേപം ജീവിതത്തെ ലളിതമാക്കും.",
-    "время നഷ്ടപ്പെട്ടാൽ തിരികെ കിട്ടില്ല.",
+    "время നഷ്ടപ്പെട്ടാൽ തിриകെ കിട്ടില്ല.",
     "നിക്ഷേപം ഭാവിയുടെ അടിത്തറയാണ്.",
     "SIP സാമ്പത്തിക ശാന്തതയുടെ മാർഗമാണ്.",
     "പണം നിയന്ത്രിച്ചാൽ ജീവിതം നിയന്ത്രിക്കാം.",
@@ -143,6 +143,7 @@ ins_quotes = [
 
 # --- HEADER ---
 st.markdown("<h1 style='text-align: center; color: #E5E7EB;'>FINANCIAL CALCULATORS</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #9CA3AF;'>Developed by SHAMSUDEEN ABDULLA</p>", unsafe_allow_html=True)
 
 # --- TABS SETUP ---
 tab_sip, tab_lumpsum, tab_cagr, tab_ins, tab_xirr, tab_rev_cagr = st.tabs([
@@ -160,7 +161,6 @@ with tab_sip:
         st.markdown('<div class="input-card">', unsafe_allow_html=True)
         st.subheader("Target Goal (Target SIP)")
         t_amt = st.number_input("Target Goal (₹)", key="sip_t_amt", format="%0.2f")
-        t_date = st.date_input("Start Date", key="sip_t_date", min_value=min_date, max_value=max_date)
         t_rate = st.number_input("Expected Return (%)", key="sip_t_rate")
         t_years = st.number_input("Time Period (Years)", key="sip_t_years", step=1)
         if st.button("Calculate Goal SIP"):
@@ -179,7 +179,6 @@ with tab_sip:
         st.markdown('<div class="input-card">', unsafe_allow_html=True)
         st.subheader("Wealth Generator (SIP)")
         w_amt = st.number_input("Monthly Investment (₹)", key="sip_w_amt")
-        w_date = st.date_input("Start Date", key="sip_w_date", min_value=min_date, max_value=max_date)
         w_rate = st.number_input("Expected Return (%)", key="sip_w_rate")
         w_years = st.number_input("Time Period (Years)", key="sip_w_years", step=1)
         if st.button("Calculate Wealth"):
@@ -205,7 +204,11 @@ with tab_lumpsum:
     l_n = st.number_input("Years", key="l_n")
     if st.button("Calculate Lumpsum"):
         fv = l_p * ((1 + l_r/100) ** l_n)
-        st.markdown(f'<h1 class="result-text" style="text-align:center;">₹ {round(fv):,}</h1>', unsafe_allow_html=True)
+        invested_l = l_p
+        returns_l = fv - l_p
+        st.markdown(f'<p style="color: #E5E7EB;">Invested Amount: ₹ {round(invested_l):,}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="color: #E5E7EB;">Estimated Returns: ₹ {round(returns_l):,}</p>', unsafe_allow_html=True)
+        st.markdown(f'<h1 class="result-text" style="text-align:center;">Total Value: ₹ {round(fv):,}</h1>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 # --- CAGR TAB ---
@@ -256,7 +259,7 @@ with tab_ins:
 with tab_xirr:
     st.error("⚠️ IMPORTANT: INVESTMENT as NEGATIVE (-10000), RETURNS as POSITIVE (25000)")
     if 'xirr_pro' not in st.session_state: 
-        st.session_state.xirr_pro = [{"Date": date.today(), "Amount": 0.0} for _ in range(10)]
+        st.session_state.xirr_pro = [{"Date": date.today(), "Amount": 0.0} for _ in range(50)]
     for i in range(len(st.session_state.xirr_pro)):
         cols = st.columns([1, 2, 2])
         cols[0].write(f"{i+1}.")
