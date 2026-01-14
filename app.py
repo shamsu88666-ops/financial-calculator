@@ -30,7 +30,7 @@ sip_quotes = [
     "समय മാർക്കറ്റിൽ ഉണ്ടാകുന്നതാണ് ഏറ്റവും വലിയ ശക്തി.",
     "SIP ക്ഷമയെ സമ്പത്താക്കുന്ന സംവിധാനം ആണ്.",
     "ചെറിയ തുകയ്ക്കും ദീർഘകാലം വലിയ മൂല്യമുണ്ട്.",
-    "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർധിക്കും.",
+    "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർधിക്കും.",
     "സ്ഥിരമായ നിക്ഷേപം അനിശ്ചിത ഭാവിയെ നിയന്ത്രിക്കും.",
     "വരുമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
     "നിക്ഷേപം ഭാവിയോട് ഉള്ള ഉത്തരവാദിത്വമാണ്.",
@@ -81,7 +81,7 @@ sip_quotes = [
     "നിക്ഷേപം ദീർഘകാല കാഴ്ചപ്പാട് നൽകും.",
     "സ്ഥിരമായ SIP വലിയ കണക്കുകൾ സൃഷ്ടിക്കും.",
     "നിക്ഷേപം ജീവിതത്തെ ലളിതമാക്കും.",
-    "время നഷ്ടപ്പെട്ടാൽ തിриകെ കിട്ടില്ല.",
+    "время നഷ്ടപ്പെട്ടാൽ തിരികെ കിട്ടില്ല.",
     "നിക്ഷേപം ഭാവിയുടെ അടിത്തറയാണ്.",
     "SIP സാമ്പത്തിക ശാന്തതയുടെ മാർഗമാണ്.",
     "പണം നിയന്ത്രിച്ചാൽ ജീവിതം നിയന്ത്രിക്കാം.",
@@ -170,7 +170,7 @@ with tab_sip:
                 n = t_years * 12
                 res = t_amt * (monthly_rate / (((1 + monthly_rate)**n - 1) * (1 + monthly_rate)))
                 st.markdown(f'<h2 class="result-text">₹ {round(res):,}</h2>', unsafe_allow_html=True)
-                st.markdown('<p style="color: #E5E7EB;">If you invest this amount in SIP, you can achieve your goal.</p>', unsafe_allow_html=True)
+                st.markdown('<p style="color: #E5E7EB;">If you invest this amount in SIP for 20 years, you can achieve your goal.</p>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
@@ -189,9 +189,9 @@ with tab_sip:
                 n = w_years * 12
                 total = w_amt * (((1 + monthly_rate)**n - 1) / monthly_rate) * (1 + monthly_rate)
                 invested = w_amt * n
-                returns = total - invested
+                est_returns = total - invested
                 st.markdown(f'<p style="color: #E5E7EB;">Invested Amount: ₹ {round(invested):,}</p>', unsafe_allow_html=True)
-                st.markdown(f'<p style="color: #E5E7EB;">Estimated Returns: ₹ {round(returns):,}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="color: #E5E7EB;">Estimated Returns: ₹ {round(est_returns):,}</p>', unsafe_allow_html=True)
                 st.markdown(f'<h2 class="result-text">Total Wealth: ₹ {round(total):,}</h2>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
@@ -224,7 +224,6 @@ with tab_ins:
     if 'ins_data' not in st.session_state: st.session_state.ins_data = []
     st.markdown('<div class="input-card">', unsafe_allow_html=True)
     i_amt = st.number_input("Amount (₹)", key="ins_amt")
-    # Calendar set to 1950 - 2099
     i_date = st.date_input("Select Date", key="ins_date", min_value=min_date, max_value=max_date)
     i_type = st.radio("Type", ["Premium", "Survival/MoneyBack", "Maturity Amount"], horizontal=True)
     if st.button("Add to List"):
@@ -261,7 +260,6 @@ with tab_xirr:
     for i in range(len(st.session_state.xirr_pro)):
         cols = st.columns([1, 2, 2])
         cols[0].write(f"{i+1}.")
-        # Calendar set to 1950 - 2099 here as well
         st.session_state.xirr_pro[i]["Date"] = cols[1].date_input(f"Date {i}", value=st.session_state.xirr_pro[i]["Date"], key=f"date_inp_{i}", label_visibility="collapsed", min_value=min_date, max_value=max_date)
         st.session_state.xirr_pro[i]["Amount"] = cols[2].number_input(f"Amt {i}", value=st.session_state.xirr_pro[i]["Amount"], key=f"amt_inp_{i}", label_visibility="collapsed")
     if st.button("Calculate XIRR PRO"):
