@@ -17,13 +17,13 @@ st.markdown("""
     button[aria-selected="true"] { color: #22C55E !important; border-bottom-color: #22C55E !important; }
     .input-card { background-color: #1A2233; padding: 20px; border-radius: 5px; border: 1px solid #374151; }
     .result-text { color: #22C55E; font-family: 'JetBrains Mono', monospace; font-weight: bold; }
-    .quote-text { color: #22C55E; font-style: italic; font-size: 0.95em; font-weight: bold; text-align: center; display: block; margin-top: 10px; }
+    .quote-text { color: #22C55E; font-style: italic; font-size: 0.95em; font-weight: bold; text-align: center; display: block; margin-top: 15px; }
     .stButton>button { background-color: #22C55E; color: white; width: 100%; border: none; }
     .stButton>button:hover { background-color: #16a34a; }
     </style>
     """, unsafe_allow_html=True)
 
-# --- COMPLETE QUOTES LIST (OLD + NEW) ---
+# --- ALL QUOTES (COMBINED) ---
 all_quotes = [
     "“നിക്ഷേപം ഒരു ഒറ്റ തീരുമാനം അല്ല, ജീവിതകാല ശീലമാണ്.”",
     "“സമ്പത്ത് പെട്ടെന്ന് ഉണ്ടാകുന്നില്ല; സ്ഥിരതയോടെ വളരുന്നു.”",
@@ -195,7 +195,7 @@ with tab_sip:
                 st.markdown(f'<h2 class="result-text">₹ {round(res):,}</h2>', unsafe_allow_html=True)
                 st.markdown(f'<p style="color: #E5E7EB;">If you invest this amount in SIP for {int(t_years)} years, you can achieve your goal.</p>', unsafe_allow_html=True)
                 st.markdown(f'<span class="quote-text">{random.choice(all_quotes)}</span>', unsafe_allow_html=True)
-            except: st.error("Check values")
+            except: st.error("Calculation Error")
         st.markdown('</div>', unsafe_allow_html=True)
 
     with col2:
@@ -214,10 +214,10 @@ with tab_sip:
                 st.markdown(f'<p style="color: #E5E7EB;">Estimated Returns: ₹ {round(total - invested):,}</p>', unsafe_allow_html=True)
                 st.markdown(f'<h2 class="result-text">Total Wealth: ₹ {round(total):,}</h2>', unsafe_allow_html=True)
                 st.markdown(f'<span class="quote-text">{random.choice(all_quotes)}</span>', unsafe_allow_html=True)
-            except: st.error("Check values")
+            except: st.error("Calculation Error")
         st.markdown('</div>', unsafe_allow_html=True)
 
-# --- SWP TAB (Using your exact logic) ---
+# --- SWP TAB (Using swp_accurate logic) ---
 with tab_swp:
     st.markdown('<div class="input-card">', unsafe_allow_html=True)
     st.subheader("Systematic Withdrawal Plan (SWP)")
@@ -228,15 +228,17 @@ with tab_swp:
     
     if st.button("Calculate SWP"):
         try:
-            m_rate = swp_rate / 12 / 100
             months = int(swp_years * 12)
+            # swp_accurate logic: Effective Monthly Rate
+            r = (1 + swp_rate / 100) ** (1 / 12) - 1
+            
             balance = swp_initial
             total_withdrawn = 0
             
             for _ in range(months):
-                balance = balance * (1 + m_rate)  # growth first
+                balance = balance * (1 + r) # growth
                 if balance >= swp_withdraw:
-                    balance = balance - swp_withdraw
+                    balance -= swp_withdraw
                     total_withdrawn += swp_withdraw
                 else:
                     total_withdrawn += balance
@@ -266,8 +268,9 @@ with tab_cagr:
     st.markdown('<div class="input-card">', unsafe_allow_html=True)
     c_i, c_f, c_y = st.number_input("Initial (₹)", key="c_i"), st.number_input("Final (₹)", key="c_f"), st.number_input("Years", key="c_y")
     if st.button("Calculate CAGR"):
-        res = ((c_f / c_i) ** (1 / c_y) - 1) * 100
-        st.markdown(f'<h1 class="result-text" style="text-align:center;">{res:.2f}%</h1>', unsafe_allow_html=True)
+        if c_i > 0 and c_y > 0:
+            res = ((c_f / c_i) ** (1 / c_y) - 1) * 100
+            st.markdown(f'<h1 class="result-text" style="text-align:center;">{res:.2f}%</h1>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 # --- INSURANCE ---
@@ -298,13 +301,15 @@ with tab_xirr:
     if 'xirr_pro' not in st.session_state: st.session_state.xirr_pro = [{"Date": date.today(), "Amount": 0.0} for _ in range(50)]
     for i in range(len(st.session_state.xirr_pro)):
         cols = st.columns([1, 2, 2])
-        st.session_state.xirr_pro[i]["Date"] = cols[1].date_input(f"Date {i}", value=st.session_state.xirr_pro[i]["Date"], key=f"d_{i}", label_visibility="collapsed")
-        st.session_state.xirr_pro[i]["Amount"] = cols[2].number_input(f"Amt {i}", value=st.session_state.xirr_pro[i]["Amount"], key=f"a_{i}", label_visibility="collapsed")
+        st.session_state.xirr_pro[i]["Date"] = cols[1].date_input(f"Date {i}", value=st.session_state.xirr_pro[i]["Date"], key=f"xd_{i}", label_visibility="collapsed")
+        st.session_state.xirr_pro[i]["Amount"] = cols[2].number_input(f"Amt {i}", value=st.session_state.xirr_pro[i]["Amount"], key=f"xa_{i}", label_visibility="collapsed")
     if st.button("Calculate XIRR PRO"):
         valid = [x for x in st.session_state.xirr_pro if x["Amount"] != 0]
         if len(valid) >= 2:
-            res = xirr([pd.to_datetime(x["Date"]) for x in valid], [x["Amount"] for x in valid]) * 100
-            st.markdown(f'<h2 class="result-text">XIRR: {res:.2f}%</h2>', unsafe_allow_html=True)
+            try:
+                res = xirr([pd.to_datetime(x["Date"]) for x in valid], [x["Amount"] for x in valid]) * 100
+                st.markdown(f'<h2 class="result-text">XIRR: {res:.2f}%</h2>', unsafe_allow_html=True)
+            except: st.error("Invalid data")
 
 # --- REVERSE CAGR ---
 with tab_rev_cagr:
