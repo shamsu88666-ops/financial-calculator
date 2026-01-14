@@ -30,7 +30,7 @@ sip_quotes = [
     "समय മാർക്കറ്റിൽ ഉണ്ടാകുന്നതാണ് ഏറ്റവും വലിയ ശക്തി.",
     "SIP ക്ഷമയെ സമ്പത്താക്കുന്ന സംവിധാനം ആണ്.",
     "ചെറിയ തുകയ്ക്കും ദീർഘകാലം വലിയ മൂല്യമുണ്ട്.",
-    "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർധിക്കും.",
+    "നിക്ഷേപത്തിൽ വികാരങ്ങൾ കുറയുമ്പോൾ ഫലം വർधിക്കും.",
     "സ്ഥിരമായ നിക്ഷേപം അനിശ്ചിത ഭാവിയെ നിയന്ത്രിക്കും.",
     "വരുമാനം വർധിപ്പിക്കാതെ പോലും സമ്പത്ത് ഉണ്ടാക്കാം.",
     "നിക്ഷേപം ഭാവിയോട് ഉള്ള ഉത്തരവാദിത്വമാണ്.",
@@ -160,6 +160,7 @@ with tab_sip:
         st.markdown('<div class="input-card">', unsafe_allow_html=True)
         st.subheader("Target Goal (Target SIP)")
         t_amt = st.number_input("Target Goal (₹)", key="sip_t_amt", format="%0.2f")
+        t_date = st.date_input("Start Date", key="sip_t_date", min_value=min_date, max_value=max_date)
         t_rate = st.number_input("Expected Return (%)", key="sip_t_rate")
         t_years = st.number_input("Time Period (Years)", key="sip_t_years", step=1)
         if st.button("Calculate Goal SIP"):
@@ -169,6 +170,7 @@ with tab_sip:
                 n = t_years * 12
                 res = t_amt * (monthly_rate / (((1 + monthly_rate)**n - 1) * (1 + monthly_rate)))
                 st.markdown(f'<h2 class="result-text">₹ {round(res):,}</h2>', unsafe_allow_html=True)
+                st.markdown('<p style="color: #E5E7EB;">If you invest this amount in SIP for 20 years, you can achieve your goal.</p>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
@@ -177,6 +179,7 @@ with tab_sip:
         st.markdown('<div class="input-card">', unsafe_allow_html=True)
         st.subheader("Wealth Generator (SIP)")
         w_amt = st.number_input("Monthly Investment (₹)", key="sip_w_amt")
+        w_date = st.date_input("Start Date", key="sip_w_date", min_value=min_date, max_value=max_date)
         w_rate = st.number_input("Expected Return (%)", key="sip_w_rate")
         w_years = st.number_input("Time Period (Years)", key="sip_w_years", step=1)
         if st.button("Calculate Wealth"):
@@ -185,7 +188,11 @@ with tab_sip:
                 monthly_rate = (1 + annual_rate)**(1/12) - 1
                 n = w_years * 12
                 total = w_amt * (((1 + monthly_rate)**n - 1) / monthly_rate) * (1 + monthly_rate)
-                st.markdown(f'<h2 class="result-text">Wealth: ₹ {round(total):,}</h2>', unsafe_allow_html=True)
+                invested = w_amt * n
+                est_returns = total - invested
+                st.markdown(f'<p style="color: #E5E7EB;">Invested Amount: ₹ {round(invested):,}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="color: #E5E7EB;">Estimated Returns: ₹ {round(est_returns):,}</p>', unsafe_allow_html=True)
+                st.markdown(f'<h2 class="result-text">Total Wealth: ₹ {round(total):,}</h2>', unsafe_allow_html=True)
                 st.markdown(f'<p class="quote-text">"{random.choice(sip_quotes)}"</p>', unsafe_allow_html=True)
             except: st.error("Check values")
         st.markdown('</div>', unsafe_allow_html=True)
