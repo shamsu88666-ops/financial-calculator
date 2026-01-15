@@ -10,16 +10,70 @@ st.set_page_config(page_title="Financial Calculators Suite - Pro Edition", layou
 # --- CUSTOM CSS ---
 st.markdown("""
     <style>
-    .main { background-color: #0E1116; color: #E5E7EB; }
-    .stApp { background-color: #0E1116; }
-    div[data-baseweb="tab-list"] { background-color: #0E1116; border-bottom: 1px solid #374151; }
-    button[data-baseweb="tab"] { color: #9CA3AF !important; font-weight: bold !important; }
-    button[aria-selected="true"] { color: #22C55E !important; border-bottom-color: #22C55E !important; }
-    .input-card { background-color: #1A2233; padding: 20px; border-radius: 5px; border: 1px solid #374151; }
-    .result-text { color: #22C55E; font-family: 'JetBrains Mono', monospace; font-weight: bold; }
-    .quote-text { color: #22C55E; font-style: italic; font-size: 0.95em; font-weight: bold; text-align: center; display: block; margin-top: 15px; }
-    .stButton>button { background-color: #22C55E; color: white; width: 100%; border: none; }
-    .stButton>button:hover { background-color: #16a34a; }
+    /* Force Dark Theme Background for all modes */
+    .stApp {
+        background-color: #0E1116 !important;
+        color: #E5E7EB !important;
+    }
+    .main {
+        background-color: #0E1116 !important;
+    }
+    div[data-baseweb="tab-list"] { 
+        background-color: #0E1116 !important; 
+        border-bottom: 1px solid #374151 !important; 
+    }
+    button[data-baseweb="tab"] { 
+        color: #9CA3AF !important; 
+        font-weight: bold !important; 
+    }
+    button[aria-selected="true"] { 
+        color: #22C55E !important; 
+        border-bottom-color: #22C55E !important; 
+    }
+    .input-card { 
+        background-color: #1A2233 !important; 
+        padding: 20px; 
+        border-radius: 5px; 
+        border: 1px solid #374151 !important; 
+    }
+    .result-text { 
+        color: #22C55E !important; 
+        font-family: 'JetBrains Mono', monospace; 
+        font-weight: bold; 
+    }
+    .quote-text { 
+        color: #22C55E !important; 
+        font-style: italic; 
+        font-size: 0.95em; 
+        font-weight: bold; 
+        text-align: center; 
+        display: block; 
+        margin-top: 15px; 
+    }
+    .stButton>button { 
+        background-color: #22C55E !important; 
+        color: white !important; 
+        width: 100%; 
+        border: none; 
+    }
+    .stButton>button:hover { 
+        background-color: #16a34a !important; 
+    }
+    /* Fix for Visibility in Light Mode */
+    label, p, span, h1, h2, h3, h4, h5, h6 {
+        color: #E5E7EB !important;
+    }
+    [data-testid="stMetricLabel"] {
+        color: #9CA3AF !important;
+    }
+    [data-testid="stMetricValue"] {
+        color: #FFFFFF !important;
+    }
+    /* Text Input boxes text color fix */
+    input {
+        color: #FFFFFF !important;
+        background-color: #0E1116 !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -52,7 +106,7 @@ all_quotes = [
     "“സ്ഥിരമായ നിക്ഷേപം മനസ്സിനും ശാന്തത നൽകും.”",
     "“വരുമാനത്തേക്കാൾ പ്രധാനമാണ് കൈകാര്യം ചെയ്യൽ.”",
     "“നിക്ഷേപം തീരുമാനിക്കുന്നതു മനസ്സുകൊണ്ട്, നടപ്പാക്കുന്നത് ശീലത്തിലൂടെയാണ്.”",
-    "“സമ്പത്ത് വളരാൻ ശബ്ദം ആവശ്യമില്ല.”",
+    "“സമ്പത്ത് വളരാൻ സമയം വേണം.”",
     "“SIP ഭാവിയിലേക്ക് നൽകുന്ന പ്രതിബദ്ധതയാണ്.”",
     "“നിക്ഷേപം ജീവിതത്തിന്റെ ബാക്കപ്പ് പ്ലാനാണ്.”",
     "“സാമ്പത്തിക അറിവ് അപകടസാധ്യത കുറയ്ക്കും.”",
